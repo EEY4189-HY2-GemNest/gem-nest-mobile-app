@@ -64,13 +64,17 @@ class _ListedAuctionScreenState extends State<ListedAuctionScreen> {
                   children: [
                     Icon(
                       Icons.list,
-                      color: _statusFilter == 'all' ? Colors.blueAccent : Colors.white70,
+                      color: _statusFilter == 'all'
+                          ? Colors.blueAccent
+                          : Colors.white70,
                     ),
                     const SizedBox(width: 8),
                     Text(
                       'All Auctions',
                       style: TextStyle(
-                        color: _statusFilter == 'all' ? Colors.blueAccent : Colors.white,
+                        color: _statusFilter == 'all'
+                            ? Colors.blueAccent
+                            : Colors.white,
                       ),
                     ),
                   ],
@@ -82,13 +86,17 @@ class _ListedAuctionScreenState extends State<ListedAuctionScreen> {
                   children: [
                     Icon(
                       Icons.play_circle_outline,
-                      color: _statusFilter == 'active' ? Colors.blueAccent : Colors.white70,
+                      color: _statusFilter == 'active'
+                          ? Colors.blueAccent
+                          : Colors.white70,
                     ),
                     const SizedBox(width: 8),
                     Text(
                       'Active Auctions',
                       style: TextStyle(
-                        color: _statusFilter == 'active' ? Colors.blueAccent : Colors.white,
+                        color: _statusFilter == 'active'
+                            ? Colors.blueAccent
+                            : Colors.white,
                       ),
                     ),
                   ],
@@ -100,13 +108,17 @@ class _ListedAuctionScreenState extends State<ListedAuctionScreen> {
                   children: [
                     Icon(
                       Icons.stop_circle_outlined,
-                      color: _statusFilter == 'ended' ? Colors.blueAccent : Colors.white70,
+                      color: _statusFilter == 'ended'
+                          ? Colors.blueAccent
+                          : Colors.white70,
                     ),
                     const SizedBox(width: 8),
                     Text(
                       'Ended Auctions',
                       style: TextStyle(
-                        color: _statusFilter == 'ended' ? Colors.blueAccent : Colors.white,
+                        color: _statusFilter == 'ended'
+                            ? Colors.blueAccent
+                            : Colors.white,
                       ),
                     ),
                   ],
@@ -169,10 +181,12 @@ class _ListedAuctionScreenState extends State<ListedAuctionScreen> {
 
             // Filter auctions based on status
             final now = DateTime.now();
-            List<QueryDocumentSnapshot> filteredAuctions = snapshot.data!.docs.where((auction) {
+            List<QueryDocumentSnapshot> filteredAuctions =
+                snapshot.data!.docs.where((auction) {
               final data = auction.data() as Map<String, dynamic>;
-              final endTime = DateTime.parse(data['endTime'] ?? DateTime.now().toIso8601String());
-              
+              final endTime = DateTime.parse(
+                  data['endTime'] ?? DateTime.now().toIso8601String());
+
               if (_statusFilter == 'active') {
                 return endTime.isAfter(now);
               } else if (_statusFilter == 'ended') {
@@ -186,7 +200,8 @@ class _ListedAuctionScreenState extends State<ListedAuctionScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.filter_list_off, color: Colors.white70, size: 60),
+                    const Icon(Icons.filter_list_off,
+                        color: Colors.white70, size: 60),
                     const SizedBox(height: 16),
                     Text(
                       'No ${_statusFilter == 'all' ? '' : _statusFilter} auctions found',
